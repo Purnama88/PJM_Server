@@ -46,5 +46,8 @@ public class ExternalItemInvoiceDraft implements Serializable{
     
     @Column(name="discount", columnDefinition="Decimal(16, 4)")
     protected double discount;
+    
+    @Column(name="box", columnDefinition="varchar(25)")
+    protected String box;
 }
 
