@@ -37,7 +37,7 @@ public class ItemInvoiceSalesDraftAPI {
     
     @GetMapping(value = "",
             headers = "Accept=application/json", params = {"invoiceid"})
-    public ResponseEntity<?> getBrandList(
+    public ResponseEntity<?> getItemInvoiceSalesDraftList(
             @RequestParam(value="invoiceid") int invoiceid) {
         
         InvoiceSalesDraft invoicesalesdraft = invoicesalesdraftService.findById(invoiceid).get();

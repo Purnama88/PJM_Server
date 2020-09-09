@@ -6,6 +6,8 @@
 package com.purnama.PJM_Server.repository;
 
 import com.purnama.PJM_Server.model.transactional.draft.DeliveryDraft;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -15,4 +17,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface DeliveryDraftRepository extends JpaRepository<DeliveryDraft, Integer>, PagingAndSortingRepository<DeliveryDraft, Integer> {
     
+    Page<DeliveryDraft> findByDraftidContaining(String draftid, Pageable pageable);
 }
