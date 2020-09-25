@@ -26,9 +26,9 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="item_",
+@Table(name="item",
         uniqueConstraints = {@UniqueConstraint(columnNames = 
-                {"code", "label_id"})})
+                {"code", "labelid"})})
 
 public class Item extends Nontransactional{
     
@@ -45,22 +45,22 @@ public class Item extends Nontransactional{
     private double cost;
     
     @ManyToOne
-    @JoinColumn(name="label_id")
+    @JoinColumn(name="labelid")
     private Label label;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "item_itemgroup_", 
-        joinColumns = { @JoinColumn(name = "item_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "itemgroup_id") }
+        name = "itemitemgroup", 
+        joinColumns = { @JoinColumn(name = "itemid") }, 
+        inverseJoinColumns = { @JoinColumn(name = "itemgroupid") }
     )
     Set<ItemGroup> itemgroups = new HashSet<>();
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "item_model_", 
-        joinColumns = { @JoinColumn(name = "item_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "model_id") }
+        name = "itemmodel", 
+        joinColumns = { @JoinColumn(name = "itemid") }, 
+        inverseJoinColumns = { @JoinColumn(name = "modelid") }
     )
     Set<ItemGroup> models = new HashSet<>();
     

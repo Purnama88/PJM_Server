@@ -32,7 +32,7 @@ public class ExternalItemInvoiceDraft implements Serializable{
     @JoinColumn(name="itemid")
     protected Item item;
     
-    @Column(name="code", columnDefinition="varchar(100)")
+    @Column(name="code", columnDefinition="varchar(25)")
     protected String code;
     
     @Column(name="description", columnDefinition="varchar(150)")

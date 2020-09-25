@@ -23,7 +23,7 @@ import lombok.Data;
 @MappedSuperclass
 public class InternalInvoiceDraft extends Nontransactional{
     
-    @Column(name="draftid", columnDefinition="varchar(50)")
+    @Column(name="draftid", columnDefinition="varchar(25)")
     protected String draftid;
     
     @ManyToOne

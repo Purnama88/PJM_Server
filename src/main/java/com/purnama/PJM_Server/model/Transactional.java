@@ -30,7 +30,7 @@ public class Transactional extends Nontransactional{
     @JoinColumn(name="userid")
     protected User user;
     
-    @Column(name="number")
+    @Column(name="number", columnDefinition="varchar(25)")
     protected String number;
     
     @Column(name="transactiondate")
@@ -42,12 +42,12 @@ public class Transactional extends Nontransactional{
     @Column(name="printed")
     protected int printed;
     
-    @Column(name="draftid")
+    @Column(name="draftid", columnDefinition="varchar(25)")
     protected String draftid;
     
-    @Column(name="usercode")
+    @Column(name="usercode", columnDefinition="varchar(25)")
     protected String usercode;
     
-    @Column(name="warehousecode")
+    @Column(name="warehousecode", columnDefinition="varchar(25)")
     protected String warehousecode;
 }

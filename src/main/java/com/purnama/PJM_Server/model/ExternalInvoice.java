@@ -27,16 +27,16 @@ public class ExternalInvoice extends Transactional{
     @Column(name="duedate")
     protected LocalDateTime duedate;
     
-    @Column(name="currencycode")
+    @Column(name="currencycode", columnDefinition="varchar(25)")
     protected String currencycode;
     
-    @Column(name="currencyname")
+    @Column(name="currencyname", columnDefinition="varchar(50)")
     protected String currencyname;
     
-    @Column(name="partnercode")
+    @Column(name="partnercode", columnDefinition="varchar(25)")
     protected String partnercode;
     
-    @Column(name="partnername")
+    @Column(name="partnername", columnDefinition="varchar(50)")
     protected String partnername;
     
     @Column(name="partneraddress")

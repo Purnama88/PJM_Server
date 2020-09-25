@@ -23,10 +23,10 @@ public class DeliveryDraft extends InternalInvoiceDraft{
     @Column(name="destination")
     private String destination;
     
-    @Column(name="vehicletype")
+    @Column(name="vehicletype", columnDefinition="varchar(25)")
     private String vehicletype;
     
-    @Column(name="vehiclecode")
+    @Column(name="vehiclecode", columnDefinition="varchar(25)")
     private String vehiclecode;
     
 }

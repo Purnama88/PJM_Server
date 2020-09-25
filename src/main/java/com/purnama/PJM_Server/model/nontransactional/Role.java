@@ -17,7 +17,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name="role_")
+@Table(name="role")
 public class Role extends Nontransactional{
     
     @Column(name="name", unique=true, columnDefinition="varchar(25)")

@@ -8,6 +8,7 @@ package com.purnama.PJM_Server.model.transactional.draft;
 import com.purnama.PJM_Server.model.InternalInvoiceDraft;
 import com.purnama.PJM_Server.model.nontransactional.Currency;
 import com.purnama.PJM_Server.model.nontransactional.Partner;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,6 +24,9 @@ import lombok.Data;
 @Data
 @Table(name="expensesdraft")
 public class ExpensesDraft extends InternalInvoiceDraft{
+    
+    @Column(name="invoicedate")
+    protected LocalDateTime duedate;
     
     @Column(name="subtotal", columnDefinition="Decimal(16, 4)")
     private double subtotal;

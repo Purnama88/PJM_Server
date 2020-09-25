@@ -27,10 +27,10 @@ public class InvoiceWarehouseDraft extends InternalInvoiceDraft{
     @JoinColumn(name="destinationid")
     private Warehouse destination;
     
-    @Column(name="destinationcode")
+    @Column(name="destinationcode", columnDefinition="varchar(25)")
     private String destinationcode;
     
-    @Column(name="shippingnumber")
+    @Column(name="shippingnumber", columnDefinition="varchar(25)")
     private String shippingnumber;
     
 }
