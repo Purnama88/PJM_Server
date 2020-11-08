@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,6 +47,8 @@ public class ItemAPI {
         
         ItemPagination item_pagination = new ItemPagination(ls.getTotalPages(), ls.getContent());
         
+        System.out.println(itemService.findItemsWithPredicate(page, itemperpage));
+        
         return ResponseEntity.ok(item_pagination);
     }
     
@@ -63,7 +64,7 @@ public class ItemAPI {
             @RequestBody Item item){
         
         item.setCode(item.getCode().toUpperCase());
-        
+        item.setCreateddate(LocalDateTime.now());
         item.setLastmodified(LocalDateTime.now());
         
         try{

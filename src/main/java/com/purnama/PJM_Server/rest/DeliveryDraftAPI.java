@@ -77,11 +77,11 @@ public class DeliveryDraftAPI {
         deliverydraft.setDestination("");
         deliverydraft.setVehiclecode("");
         deliverydraft.setVehicletype("");
-        deliverydraft.setTransactiondate(LocalDateTime.now());
         deliverydraft.setInvoicedate(LocalDateTime.now());
         deliverydraft.setWarehouse(warehouse);
         deliverydraft.setNote("");
         deliverydraft.setUser(user);
+        deliverydraft.setCreateddate(LocalDateTime.now());
         deliverydraft.setLastmodified(LocalDateTime.now());
         
         deliverydraftService.save(deliverydraft);

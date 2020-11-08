@@ -73,7 +73,7 @@ public class RoleAPI {
             @RequestBody Role role){
         
         role.setName(role.getName().toUpperCase());
-        
+        role.setCreateddate(LocalDateTime.now());
         role.setLastmodified(LocalDateTime.now());
         
         try{

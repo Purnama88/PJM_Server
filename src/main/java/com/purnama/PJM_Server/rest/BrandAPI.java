@@ -57,7 +57,7 @@ public class BrandAPI {
             return ResponseEntity.ok(brandService.findByStatusTrue());
         }
         else{
-            return ResponseEntity.ok(brandService.findByStatusTrue());
+            return ResponseEntity.ok(brandService.findByStatusFalse());
         }
     }
     
@@ -98,7 +98,7 @@ public class BrandAPI {
             @RequestBody Brand brand){
         
         brand.setCode(brand.getCode().toUpperCase());
-        
+        brand.setCreateddate(LocalDateTime.now());
         brand.setLastmodified(LocalDateTime.now());
         
         try{

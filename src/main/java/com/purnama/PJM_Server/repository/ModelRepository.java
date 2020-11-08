@@ -5,6 +5,7 @@
  */
 package com.purnama.PJM_Server.repository;
 
+import com.purnama.PJM_Server.model.nontransactional.Brand;
 import com.purnama.PJM_Server.model.nontransactional.Model;
 import java.util.List;
 import java.util.Optional;
@@ -27,4 +28,6 @@ public interface ModelRepository extends JpaRepository<Model, Integer>, PagingAn
     List<Model> findByStatusTrue(Sort sort);
     
     List<Model> findByStatusFalse(Sort sort);
+    
+    List<Model> findByBrandAndStatus(Brand brand, boolean status, Sort sort);
 }

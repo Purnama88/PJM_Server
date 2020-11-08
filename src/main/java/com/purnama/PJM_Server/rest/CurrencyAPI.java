@@ -76,9 +76,8 @@ public class CurrencyAPI {
             @RequestBody Currency currency){
         
         currency.setCode(currency.getCode().toUpperCase());
-        
+        currency.setCreateddate(LocalDateTime.now());
         currency.setLastmodified(LocalDateTime.now());
-        
         
         if(currency.isDefaultcurrency()){
             if(!currency.isStatus()){

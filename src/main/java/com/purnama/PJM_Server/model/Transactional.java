@@ -33,9 +33,6 @@ public class Transactional extends Nontransactional{
     @Column(name="number", columnDefinition="varchar(25)")
     protected String number;
     
-    @Column(name="transactiondate")
-    protected LocalDateTime transactiondate;
-    
     @Column(name="invoicedate")
     protected LocalDateTime invoicedate;
     

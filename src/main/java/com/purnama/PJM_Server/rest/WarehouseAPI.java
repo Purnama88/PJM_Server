@@ -74,7 +74,7 @@ public class WarehouseAPI {
             @RequestBody Warehouse warehouse){
         
         warehouse.setCode(warehouse.getCode().toUpperCase());
-        
+        warehouse.setCreateddate(LocalDateTime.now());
         warehouse.setLastmodified(LocalDateTime.now());
         
         try{

@@ -5,10 +5,13 @@
  */
 package com.purnama.PJM_Server.rest;
 
+import com.purnama.PJM_Server.model.nontransactional.Brand;
 import com.purnama.PJM_Server.model.nontransactional.Model;
 import com.purnama.PJM_Server.model.pagination.ModelPagination;
+import com.purnama.PJM_Server.service.BrandService;
 import com.purnama.PJM_Server.service.ModelService;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +39,8 @@ public class ModelAPI {
     
     private final ModelService modelService;
     
+    private final BrandService brandService;
+    
     @GetMapping(value="",
             headers = "Accept=application/json", params = {"status"})
     public ResponseEntity getModelList(@RequestParam(value="status") boolean status){
@@ -46,6 +50,18 @@ public class ModelAPI {
         else{
             return ResponseEntity.ok(modelService.findByStatusFalse());
         }
+    }
+    
+    @GetMapping(value="",
+            headers = "Accept=application/json", params = {"brandid", "status"})
+    public ResponseEntity getModelList(
+            @RequestParam(value="brandid") int brandid,
+            @RequestParam(value="status") boolean status){
+        Brand brand = brandService.findById(brandid).get();
+        
+        List<Model> ls = modelService.findByBrandAndStatus(brand, status);
+        
+        return ResponseEntity.ok(ls);
     }
     
     @GetMapping(value = "", 
@@ -74,7 +90,7 @@ public class ModelAPI {
             @RequestBody Model model){
         
         model.setCode(model.getCode().toUpperCase());
-        
+        model.setCreateddate(LocalDateTime.now());
         model.setLastmodified(LocalDateTime.now());
         
         try{

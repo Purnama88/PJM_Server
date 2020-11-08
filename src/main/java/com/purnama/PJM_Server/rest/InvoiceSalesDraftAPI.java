@@ -82,7 +82,7 @@ public class InvoiceSalesDraftAPI {
         
         InvoiceSalesDraft invoicesalesdraft = new InvoiceSalesDraft();
         invoicesalesdraft.setDraftid(IdGenerator.generateId());
-        invoicesalesdraft.setTransactiondate(LocalDateTime.now());
+        invoicesalesdraft.setCreateddate(LocalDateTime.now());
         invoicesalesdraft.setInvoicedate(LocalDateTime.now());
         invoicesalesdraft.setWarehouse(warehouse);
         invoicesalesdraft.setNote("");

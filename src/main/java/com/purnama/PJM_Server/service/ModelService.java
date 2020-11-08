@@ -5,6 +5,7 @@
  */
 package com.purnama.PJM_Server.service;
 
+import com.purnama.PJM_Server.model.nontransactional.Brand;
 import com.purnama.PJM_Server.model.nontransactional.Model;
 import com.purnama.PJM_Server.repository.ModelRepository;
 import java.util.List;
@@ -55,5 +56,9 @@ public class ModelService {
     
     public List<Model> findByStatusFalse(){
         return modelRepository.findByStatusFalse(Sort.by(Sort.Direction.ASC, "name"));
+    }
+    
+    public List<Model> findByBrandAndStatus(Brand brand, boolean status){
+        return modelRepository.findByBrandAndStatus(brand, status, Sort.by(Sort.Direction.ASC, "name"));
     }
 }

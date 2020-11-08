@@ -82,7 +82,7 @@ public class ReturnSalesDraftAPI {
         
         ReturnSalesDraft returnsalesdraft = new ReturnSalesDraft();
         returnsalesdraft.setDraftid(IdGenerator.generateId());
-        returnsalesdraft.setTransactiondate(LocalDateTime.now());
+        returnsalesdraft.setCreateddate(LocalDateTime.now());
         returnsalesdraft.setInvoicedate(LocalDateTime.now());
         returnsalesdraft.setWarehouse(warehouse);
         returnsalesdraft.setNote("");

@@ -49,6 +49,7 @@ public class InitalizationAPI {
             menu.setName(Menu.MENU_NAMES[i]);
             menu.setNote("");
             menu.setLastmodified(LocalDateTime.now());
+            menu.setCreateddate(LocalDateTime.now());
             menuService.save(menu);
         }
         
@@ -61,6 +62,7 @@ public class InitalizationAPI {
         role.setName("SUPERADMIN");
         role.setNote("");
         role.setLastmodified(LocalDateTime.now());
+        role.setCreateddate(LocalDateTime.now());
         
         roleService.save(role);
         
@@ -68,6 +70,7 @@ public class InitalizationAPI {
         warehouse.setAddress("Jl. Petojo");
         warehouse.setCode("ENA");
         warehouse.setLastmodified(LocalDateTime.now());
+        warehouse.setCreateddate(LocalDateTime.now());
         warehouse.setName("EnamA");
         warehouse.setNote("");
         
@@ -77,6 +80,7 @@ public class InitalizationAPI {
         user.setCode("PRN");
         user.setEmail("emai.email@email.com");
         user.setLastmodified(LocalDateTime.now());
+        user.setCreateddate(LocalDateTime.now());
         user.setMaximumdiscount(100);
         user.setName("purnama");
         user.setNote("");

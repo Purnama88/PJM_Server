@@ -74,7 +74,7 @@ public class LabelAPI {
             @RequestBody Label label){
         
         label.setCode(label.getCode().toUpperCase());
-        
+        label.setCreateddate(LocalDateTime.now());
         label.setLastmodified(LocalDateTime.now(ZoneId.systemDefault()));
         
         try{

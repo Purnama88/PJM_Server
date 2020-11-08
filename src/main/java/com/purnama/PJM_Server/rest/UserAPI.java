@@ -65,7 +65,7 @@ public class UserAPI {
         user.setUsername(user.getUsername().toLowerCase());
         
         user.setCode(user.getCode().toUpperCase());
-        
+        user.setCreateddate(LocalDateTime.now());
         user.setLastmodified(LocalDateTime.now());
         
         try{

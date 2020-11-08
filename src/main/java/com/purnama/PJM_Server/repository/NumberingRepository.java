@@ -22,4 +22,5 @@ public interface NumberingRepository extends JpaRepository<Numbering, Integer>{
     Page<Numbering> findByMenuAndNameContaining(Menu menu, String name, Pageable pageable);
     
     List<Numbering> findByMenuAndStatus(Menu menu, boolean status, Sort sort);
+    
 }

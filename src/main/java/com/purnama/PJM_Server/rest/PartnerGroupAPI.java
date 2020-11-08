@@ -73,7 +73,7 @@ public class PartnerGroupAPI {
             @RequestBody PartnerGroup partnergroup){
         
         partnergroup.setCode(partnergroup.getCode().toUpperCase());
-        
+        partnergroup.setCreateddate(LocalDateTime.now());
         partnergroup.setLastmodified(LocalDateTime.now());
         
         try{

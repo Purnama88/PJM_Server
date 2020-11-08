@@ -5,12 +5,14 @@
  */
 package com.purnama.PJM_Server.model;
 
+import com.purnama.PJM_Server.model.nontransactional.Item;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import lombok.Data;
 
@@ -20,21 +22,19 @@ import lombok.Data;
  */
 @Data
 @MappedSuperclass
-public class Nontransactional implements Serializable{
+public class Price implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    protected int id;
+    private int id;
+            
+    @Column(name="quantity")
+    private double quantity;
     
-    @Column(name="status", nullable = false, columnDefinition="boolean default true")
-    protected boolean status = true;
+    @Column(name="price")
+    private double price;
     
-    @Column(name="note")
-    protected String note;
-    
-    @Column(name="createddate")
-    protected LocalDateTime createddate;
-    
-    @Column(name="lastmodified")
-    protected LocalDateTime lastmodified;
+    @ManyToOne
+    @JoinColumn(name="itemid")
+    private Item item;
 }

@@ -80,7 +80,7 @@ public class PartnerAPI {
             @RequestBody Partner partner){
         
         partner.setCode(partner.getCode().toUpperCase());
-        
+        partner.setCreateddate(LocalDateTime.now());
         partner.setLastmodified(LocalDateTime.now());
         
         try{

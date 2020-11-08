@@ -80,7 +80,6 @@ public class ExpensesDraftAPI {
         
         ExpensesDraft expensesdraft = new ExpensesDraft();
         expensesdraft.setDraftid(IdGenerator.generateId());
-        expensesdraft.setTransactiondate(LocalDateTime.now());
         expensesdraft.setInvoicedate(LocalDateTime.now());
         expensesdraft.setWarehouse(warehouse);
         expensesdraft.setNote("");
@@ -91,6 +90,7 @@ public class ExpensesDraftAPI {
         expensesdraft.setTax(0);
         expensesdraft.setUser(user);
         expensesdraft.setLastmodified(LocalDateTime.now());
+        expensesdraft.setCreateddate(LocalDateTime.now());
         expensesdraft.setCurrency(currency);
         
         expensesdraftService.save(expensesdraft);

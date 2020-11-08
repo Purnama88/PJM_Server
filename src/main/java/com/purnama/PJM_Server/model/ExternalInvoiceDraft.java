@@ -48,9 +48,6 @@ public class ExternalInvoiceDraft extends Nontransactional{
     @JoinColumn(name="partnerid")
     protected Partner partner;
     
-    @Column(name="transactiondate")
-    protected LocalDateTime transactiondate;
-    
     @Column(name="invoicedate")
     protected LocalDateTime invoicedate;
     

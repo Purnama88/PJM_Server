@@ -10,15 +10,17 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
  * @author p_cor
  */
-public interface ItemRepository extends JpaRepository<Item, Integer>, PagingAndSortingRepository<Item, Integer> {
+public interface ItemRepository extends JpaRepository<Item, Integer>, PagingAndSortingRepository<Item, Integer>, JpaSpecificationExecutor<Item> {
     
     Page<Item> findByCodeContainingOrNameContaining(String code, String name, Pageable pageable);
     
     Optional<Item> findByCode(String code);
+    
 }

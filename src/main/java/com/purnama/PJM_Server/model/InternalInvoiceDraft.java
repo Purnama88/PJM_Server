@@ -38,9 +38,6 @@ public class InternalInvoiceDraft extends Nontransactional{
     @JoinColumn(name = "warehouseid")
     protected Warehouse warehouse;
     
-    @Column(name="transactiondate")
-    protected LocalDateTime transactiondate;
-    
     @Column(name="invoicedate")
     protected LocalDateTime invoicedate;
 }

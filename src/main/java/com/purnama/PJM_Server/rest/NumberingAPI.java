@@ -79,7 +79,7 @@ public class NumberingAPI {
         
         numbering.setStart(1);
         numbering.setCurrent(1);
-        
+        numbering.setCreateddate(LocalDateTime.now());
         numbering.setLastmodified(LocalDateTime.now());
         
         try{

@@ -25,7 +25,7 @@ import lombok.Data;
 @Table(name="expensesdraft")
 public class ExpensesDraft extends InternalInvoiceDraft{
     
-    @Column(name="invoicedate")
+    @Column(name="duedate")
     protected LocalDateTime duedate;
     
     @Column(name="subtotal", columnDefinition="Decimal(16, 4)")

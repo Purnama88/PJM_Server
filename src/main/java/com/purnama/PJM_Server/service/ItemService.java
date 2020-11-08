@@ -6,12 +6,18 @@
 package com.purnama.PJM_Server.service;
 
 import com.purnama.PJM_Server.model.nontransactional.Item;
+import com.purnama.PJM_Server.model.nontransactional.Label;
 import com.purnama.PJM_Server.repository.ItemRepository;
+import com.purnama.PJM_Server.repository.LabelRepository;
+import com.purnama.PJM_Server.util.GenericSpesification;
+import com.purnama.PJM_Server.util.SearchCriteria;
+import com.purnama.PJM_Server.util.SearchOperation;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +29,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ItemService {
     private final ItemRepository itemRepository;
+    private final LabelRepository labelRepository;
     
     public List<Item> findAll(){
         return itemRepository.findAll();
@@ -46,5 +53,18 @@ public class ItemService {
     
     public Optional<Item> findByCode(String code){
         return itemRepository.findByCode(code);
+    }
+    
+    public Page<Item> findItemsWithPredicate(int page, int size){
+        Label label = labelRepository.findById(1).get();
+        
+        GenericSpesification genericSpesification = new GenericSpesification<Item>();
+        genericSpesification.add(new SearchCriteria("code", "48500", SearchOperation.MATCH));
+        genericSpesification.add(new SearchCriteria("description", "gear box", SearchOperation.MATCH));
+        genericSpesification.add(new SearchCriteria("label", label.getId(), SearchOperation.EQUAL));
+
+        
+        
+        return itemRepository.findAll(genericSpesification, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "name")));
     }
 }

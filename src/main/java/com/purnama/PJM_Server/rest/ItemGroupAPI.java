@@ -73,7 +73,7 @@ public class ItemGroupAPI {
             @RequestBody ItemGroup itemgroup){
         
         itemgroup.setCode(itemgroup.getCode().toUpperCase());
-        
+        itemgroup.setCreateddate(LocalDateTime.now());
         itemgroup.setLastmodified(LocalDateTime.now());
         
         try{
