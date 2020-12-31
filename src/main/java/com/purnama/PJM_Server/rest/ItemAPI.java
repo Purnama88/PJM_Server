@@ -88,6 +88,10 @@ public class ItemAPI {
         Item temp = itemService.findById(item.getId()).get();
         
         temp.setName(item.getName());
+        temp.setBulkbuyprice(item.isBulkbuyprice());
+        temp.setBulksellprice(item.isBulksellprice());
+        temp.setBuyprice(item.getBuyprice());
+        temp.setSellprice(item.getSellprice());
         temp.setDescription(item.getDescription());
         temp.setCost(item.getCost());
         temp.setLabel(item.getLabel());

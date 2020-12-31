@@ -9,6 +9,6 @@ package com.purnama.PJM_Server.repository;
  *
  * @author p_cor
  */
-public class DeliveryRepository {
+public interface DeliveryRepository {
     
 }

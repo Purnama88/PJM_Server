@@ -48,8 +48,17 @@ public class Item extends Nontransactional{
     @JoinColumn(name="labelid")
     private Label label;
     
-    @Column(name="wholesaleprices", nullable = false, columnDefinition="boolean default true")
-    private double wholesaleprices;
+    @Column(name="sellprice")
+    private double sellprice;
+    
+    @Column(name="buyprice")
+    private double buyprice;
+    
+    @Column(name="bulkbuyprice", nullable = false, columnDefinition="boolean default false")
+    private boolean bulksellprice;
+    
+    @Column(name="bulksellprice", nullable = false, columnDefinition="boolean default false")
+    private boolean bulkbuyprice;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
