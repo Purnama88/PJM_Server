@@ -8,11 +8,14 @@ package com.purnama.PJM_Server.service;
 import com.purnama.PJM_Server.model.nontransactional.Menu;
 import com.purnama.PJM_Server.model.nontransactional.Numbering;
 import com.purnama.PJM_Server.repository.NumberingRepository;
+import com.purnama.PJM_Server.util.GenericSpecificationsBuilder;
+import com.purnama.PJM_Server.util.SearchOperation;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -42,8 +45,13 @@ public class NumberingService {
         numberingRepository.deleteById(id);
     }
     
-    public Page<Numbering> findByMenuAndNameContaining(Menu menu, String name, int page, int size){
-        return numberingRepository.findByMenuAndNameContaining(menu, name, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "name")));
+    public Page<Numbering> findByNamePrefixMenuWithPredicate(String keyword, int menuid, int page, int size){
+        GenericSpecificationsBuilder genericSpesification = new GenericSpecificationsBuilder<Numbering>();
+        genericSpesification.with("name", SearchOperation.MATCH, true, keyword);
+        genericSpesification.with("prefix", SearchOperation.MATCH, true, keyword);
+        genericSpesification.with("menu", SearchOperation.EQUAL, false, menuid);
+        
+        return numberingRepository.findAll(genericSpesification.build(), PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "name")));
     }
     
     public List<Numbering> findByMenuAndStatus(Menu menu, boolean status){

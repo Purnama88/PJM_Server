@@ -47,9 +47,7 @@ public class NumberingAPI {
             @RequestParam(value="keyword") String keyword,
             @RequestParam(value="menuid") int menuid) {
         
-        Menu menu = menuService.findById(menuid).get();
-        
-        Page<Numbering> ls = numberingService.findByMenuAndNameContaining(menu, keyword, page, itemperpage);
+        Page<Numbering> ls = numberingService.findByNamePrefixMenuWithPredicate(keyword, menuid, page, itemperpage);
 
         NumberingPagination numberingpagination = new NumberingPagination(ls.getTotalPages(), ls.getContent());
         

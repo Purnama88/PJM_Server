@@ -42,7 +42,7 @@ public class DeliveryDraftService {
     }
     
     public Page<DeliveryDraft> findByDraftidContaining(String draftid, int page, int size){
-        return deliverydraftRepository.findByDraftidContaining(draftid, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "transactiondate")));
+        return deliverydraftRepository.findByDraftidContaining(draftid, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "invoicedate")));
     }
     
 }

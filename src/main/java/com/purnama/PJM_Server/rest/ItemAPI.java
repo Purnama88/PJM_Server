@@ -9,6 +9,7 @@ import com.purnama.PJM_Server.model.nontransactional.Item;
 import com.purnama.PJM_Server.model.pagination.ItemPagination;
 import com.purnama.PJM_Server.service.ItemService;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,17 @@ public class ItemAPI {
     private final ItemService itemService;
     
     @GetMapping(value = "", 
+            headers = "Accept=application/json", params = {"labelid", "keyword"})
+    public ResponseEntity<?> getItemList(
+            @RequestParam(value="labelid") int labelid,
+            @RequestParam(value="keyword") String keyword) {
+        
+        List<Item> ls = itemService.findByCodeNameLabelWithPredicate(keyword, labelid);
+        
+        return ResponseEntity.ok(ls);
+    }
+    
+    @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"itemperpage", "page", "keyword"})
     public ResponseEntity<?> getItemList(
             @RequestParam(value="itemperpage") int itemperpage,
@@ -46,8 +58,6 @@ public class ItemAPI {
         Page<Item> ls = itemService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
         ItemPagination item_pagination = new ItemPagination(ls.getTotalPages(), ls.getContent());
-        
-        System.out.println(itemService.findItemsWithPredicate(page, itemperpage));
         
         return ResponseEntity.ok(item_pagination);
     }

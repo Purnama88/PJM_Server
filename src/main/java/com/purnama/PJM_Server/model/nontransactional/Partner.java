@@ -85,12 +85,12 @@ public class Partner extends Nontransactional{
     @Column(name="nontrade", nullable = false, columnDefinition="boolean default true")
     private boolean nontrade;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "itempartnergroup", 
-        joinColumns = { @JoinColumn(name = "itemid") }, 
-        inverseJoinColumns = { @JoinColumn(name = "partnergroupid") }
-    )
-    Set<PartnerGroup> partnergroups = new HashSet<>();
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//        name = "itempartnergroup", 
+//        joinColumns = { @JoinColumn(name = "itemid") }, 
+//        inverseJoinColumns = { @JoinColumn(name = "partnergroupid") }
+//    )
+//    Set<PartnerGroup> partnergroups = new HashSet<>();
     
 }

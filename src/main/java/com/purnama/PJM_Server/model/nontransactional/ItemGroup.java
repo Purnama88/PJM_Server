@@ -6,8 +6,12 @@
 package com.purnama.PJM_Server.model.nontransactional;
 
 import com.purnama.PJM_Server.model.Nontransactional;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
 

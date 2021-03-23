@@ -14,14 +14,24 @@ public class SearchCriteria {
     private String key;
     private Object value;
     private SearchOperation operation;
+    private boolean oroperation;
 
 
-    public SearchCriteria(String key, Object value, SearchOperation operation) {
+    public SearchCriteria(String key, SearchOperation operation, boolean oroperation, Object value) {
         this.key = key;
         this.value = value;
         this.operation = operation;
+        this.oroperation = oroperation;
     }
 
+    public boolean isOroperation() {
+        return oroperation;
+    }
+
+    public void setOroperation(boolean oroperation) {
+        this.oroperation = oroperation;
+    }
+    
     public String getKey() {
         return key;
     }

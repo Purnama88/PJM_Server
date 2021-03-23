@@ -12,12 +12,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  *
  * @author p_cor
  */
-public interface NumberingRepository extends JpaRepository<Numbering, Integer>{
+public interface NumberingRepository extends JpaRepository<Numbering, Integer>, JpaSpecificationExecutor<Numbering>{
     
     Page<Numbering> findByMenuAndNameContaining(Menu menu, String name, Pageable pageable);
     

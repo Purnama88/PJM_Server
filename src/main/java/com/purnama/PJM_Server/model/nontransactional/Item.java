@@ -60,20 +60,20 @@ public class Item extends Nontransactional{
     @Column(name="bulksellprice", nullable = false, columnDefinition="boolean default false")
     private boolean bulkbuyprice;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "itemitemgroup", 
-        joinColumns = { @JoinColumn(name = "itemid") }, 
-        inverseJoinColumns = { @JoinColumn(name = "itemgroupid") }
-    )
-    Set<ItemGroup> itemgroups = new HashSet<>();
-    
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "itemmodel", 
-        joinColumns = { @JoinColumn(name = "itemid") }, 
-        inverseJoinColumns = { @JoinColumn(name = "modelid") }
-    )
-    Set<ItemGroup> models = new HashSet<>();
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//        name = "itemitemgroup", 
+//        joinColumns = { @JoinColumn(name = "itemid") }, 
+//        inverseJoinColumns = { @JoinColumn(name = "itemgroupid") }
+//    )
+//    Set<ItemGroup> itemgroups = new HashSet<>();
+//    
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//        name = "itemmodel", 
+//        joinColumns = { @JoinColumn(name = "itemid") }, 
+//        inverseJoinColumns = { @JoinColumn(name = "modelid") }
+//    )
+//    Set<ItemGroup> models = new HashSet<>();
     
 }

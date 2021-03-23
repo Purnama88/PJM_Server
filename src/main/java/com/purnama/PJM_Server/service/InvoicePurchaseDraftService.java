@@ -42,7 +42,7 @@ public class InvoicePurchaseDraftService {
     }
     
     public Page<InvoicePurchaseDraft> findByDraftidContaining(String draftid, int page, int size){
-        return invoicepurchasedraftRepository.findByDraftidContaining(draftid, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "transactiondate")));
+        return invoicepurchasedraftRepository.findByDraftidContaining(draftid, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "invoicedate")));
     }
     
 }

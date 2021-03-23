@@ -9,7 +9,8 @@ import com.purnama.PJM_Server.model.nontransactional.Item;
 import com.purnama.PJM_Server.model.nontransactional.Label;
 import com.purnama.PJM_Server.repository.ItemRepository;
 import com.purnama.PJM_Server.repository.LabelRepository;
-import com.purnama.PJM_Server.util.GenericSpesification;
+import com.purnama.PJM_Server.util.GenericSpecification;
+import com.purnama.PJM_Server.util.GenericSpecificationsBuilder;
 import com.purnama.PJM_Server.util.SearchCriteria;
 import com.purnama.PJM_Server.util.SearchOperation;
 import java.util.List;
@@ -17,7 +18,6 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ItemService {
     private final ItemRepository itemRepository;
-    private final LabelRepository labelRepository;
     
     public List<Item> findAll(){
         return itemRepository.findAll();
@@ -55,16 +54,13 @@ public class ItemService {
         return itemRepository.findByCode(code);
     }
     
-    public Page<Item> findItemsWithPredicate(int page, int size){
-        Label label = labelRepository.findById(1).get();
+    public List<Item> findByCodeNameLabelWithPredicate(String keyword, int labelid){
         
-        GenericSpesification genericSpesification = new GenericSpesification<Item>();
-        genericSpesification.add(new SearchCriteria("code", "48500", SearchOperation.MATCH));
-        genericSpesification.add(new SearchCriteria("description", "gear box", SearchOperation.MATCH));
-        genericSpesification.add(new SearchCriteria("label", label.getId(), SearchOperation.EQUAL));
+        GenericSpecificationsBuilder genericSpesification = new GenericSpecificationsBuilder<Item>();
+        genericSpesification.with("code", SearchOperation.MATCH, true, keyword);
+        genericSpesification.with("name", SearchOperation.MATCH, true, keyword);
+        genericSpesification.with("label", SearchOperation.EQUAL, false, labelid);
 
-        
-        
-        return itemRepository.findAll(genericSpesification, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "name")));
+        return itemRepository.findAll(genericSpesification.build(), Sort.by(Sort.Direction.ASC, "name"));
     }
 }
