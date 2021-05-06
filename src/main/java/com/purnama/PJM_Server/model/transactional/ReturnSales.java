@@ -18,6 +18,6 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="returnsales")
-public class RetiurnSales extends ExternalInvoice{
+public class ReturnSales extends ExternalInvoice{
     
 }

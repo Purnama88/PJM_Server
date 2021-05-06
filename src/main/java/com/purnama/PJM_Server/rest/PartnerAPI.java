@@ -9,6 +9,7 @@ import com.purnama.PJM_Server.model.nontransactional.Partner;
 import com.purnama.PJM_Server.model.pagination.PartnerPagination;
 import com.purnama.PJM_Server.service.PartnerService;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class PartnerAPI {
     
     private final PartnerService partnerService;
+    
+    @GetMapping(value = "", 
+            headers = "Accept=application/json", params = {"keyword"})
+    public ResponseEntity<?> getItemList(
+            @RequestParam(value="keyword") String keyword) {
+        
+        List<Partner> ls = partnerService.findByCodeContainingOrNameContaining(keyword, keyword);
+        
+        return ResponseEntity.ok(ls);
+    }
     
     @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"itemperpage", "page", "keyword"})

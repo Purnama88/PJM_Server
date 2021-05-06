@@ -74,9 +74,9 @@ public class ItemItemGroupAPI {
     @DeleteMapping(value = "",
             headers = "Accept=application/json", params = {"id"})
     public ResponseEntity<?> deleteItemItemGroup(
-            @RequestParam(value="itemid") int itemid){
+            @RequestParam(value="id") int id){
         
-        itemitemgroupService.deleteById(itemid);
+        itemitemgroupService.deleteById(id);
         
         return ResponseEntity.ok("");
     }

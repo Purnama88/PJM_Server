@@ -5,9 +5,9 @@
  */
 package com.purnama.PJM_Server.rest;
 
-import com.purnama.PJM_Server.model.pagination.InvoiceSalesPagination;
-import com.purnama.PJM_Server.model.transactional.InvoiceSales;
-import com.purnama.PJM_Server.service.InvoiceSalesService;
+import com.purnama.PJM_Server.model.pagination.InvoicePurchasePagination;
+import com.purnama.PJM_Server.model.transactional.InvoicePurchase;
+import com.purnama.PJM_Server.service.InvoicePurchaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,33 +22,33 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author p_cor
  */
-
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/invoicesales")
-public class InvoiceSalesAPI {
+@RequestMapping("/api/v1/invoicepurchases")
+public class InvoicePurchaseAPI {
     
-    private final InvoiceSalesService invoicesalesService;
+    private final InvoicePurchaseService invoicepurchaseService;
     
     @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"itemperpage", "page", "keyword"})
-    public ResponseEntity<?> getInvoiceSalesList(
+    public ResponseEntity<?> getInvoicePurchaseList(
             @RequestParam(value="itemperpage") int itemperpage,
             @RequestParam(value="page") int page,
             @RequestParam(value="keyword") String keyword) {
         
-        Page<InvoiceSales> ls = invoicesalesService.findByNumberContaining(keyword, page, itemperpage);
+        Page<InvoicePurchase> ls = invoicepurchaseService.findByNumberContaining(keyword, page, itemperpage);
 
-        InvoiceSalesPagination invoicesales_pagination = new InvoiceSalesPagination(ls.getTotalPages(), ls.getContent());
+        InvoicePurchasePagination invoicepurchase_pagination = new InvoicePurchasePagination(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(invoicesales_pagination);
+        return ResponseEntity.ok(invoicepurchase_pagination);
        
     }
     
     @GetMapping(value = "/{id}", 
             headers = "Accept=application/json")
-    public ResponseEntity<?> getInvoiceSales(@PathVariable("id") int id) {
-        return ResponseEntity.ok(invoicesalesService.findById(id));
+    public ResponseEntity<?> getInvoicePurchase(@PathVariable("id") int id) {
+        return ResponseEntity.ok(invoicepurchaseService.findById(id));
     }
 }
+

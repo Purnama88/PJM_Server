@@ -22,6 +22,8 @@ public interface PartnerRepository extends JpaRepository<Partner, Integer>, Pagi
     
     Page<Partner> findByCodeContainingOrNameContainingOrContactnameContaining(String code, String name, String contactname, Pageable pageable);
     
+    List<Partner> findByCodeContainingOrNameContaining(String code, String name, Sort sort);
+    
     List<Partner> findByStatus(boolean status, Sort sort);
     
     List<Partner> findByCustomerAndStatus (boolean customer, boolean status, Sort sort);

@@ -44,6 +44,10 @@ public class PartnerService {
         return partnerRepository.findByCodeContainingOrNameContainingOrContactnameContaining(code, name, contactname, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "name")));
     }
     
+    public List<Partner> findByCodeContainingOrNameContaining(String code, String name){
+        return partnerRepository.findByCodeContainingOrNameContaining(code, name, Sort.by(Sort.Direction.ASC, "name"));
+    }
+    
     public Optional<Partner> findByCode(String code){
         return partnerRepository.findByCode(code);
     }

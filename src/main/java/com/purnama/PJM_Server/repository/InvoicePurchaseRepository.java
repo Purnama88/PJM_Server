@@ -5,7 +5,7 @@
  */
 package com.purnama.PJM_Server.repository;
 
-import com.purnama.PJM_Server.model.transactional.InvoiceSales;
+import com.purnama.PJM_Server.model.transactional.InvoicePurchase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,8 +15,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * @author p_cor
  */
-public interface InvoiceSalesRepository extends JpaRepository<InvoiceSales, Integer>, PagingAndSortingRepository<InvoiceSales, Integer>  {
+public interface InvoicePurchaseRepository extends JpaRepository<InvoicePurchase, Integer>, PagingAndSortingRepository<InvoicePurchase, Integer>  {
     
-    Page<InvoiceSales> findByNumberContaining(String number, Pageable pageable);
+    Page<InvoicePurchase> findByNumberContaining(String number, Pageable pageable);
     
 }

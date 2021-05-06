@@ -10,6 +10,9 @@ import com.purnama.PJM_Server.repository.InvoiceSalesRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -38,4 +41,7 @@ public class InvoiceSalesService {
         invoicesalesRepository.deleteById(id);
     }
     
+    public Page<InvoiceSales> findByNumberContaining(String draftid, int page, int size){
+        return invoicesalesRepository.findByNumberContaining(draftid, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "invoicedate")));
+    }
 }
