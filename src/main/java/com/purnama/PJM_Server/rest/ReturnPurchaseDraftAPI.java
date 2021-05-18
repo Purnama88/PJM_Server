@@ -8,8 +8,8 @@ package com.purnama.PJM_Server.rest;
 import com.purnama.PJM_Server.model.nontransactional.Currency;
 import com.purnama.PJM_Server.model.nontransactional.User;
 import com.purnama.PJM_Server.model.nontransactional.Warehouse;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.model.transactional.draft.ReturnPurchaseDraft;
-import com.purnama.PJM_Server.model.pagination.ReturnPurchaseDraftPagination;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
 import com.purnama.PJM_Server.service.ReturnPurchaseDraftService;
@@ -56,9 +56,9 @@ public class ReturnPurchaseDraftAPI {
         
         Page<ReturnPurchaseDraft> ls = returnpurchasedraftService.findByDraftidContaining(keyword, page, itemperpage);
 
-        ReturnPurchaseDraftPagination returnpurchasedraft_pagination = new ReturnPurchaseDraftPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<ReturnPurchaseDraft> returnpurchasedraftpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(returnpurchasedraft_pagination);
+        return ResponseEntity.ok(returnpurchasedraftpagination);
        
     }
     

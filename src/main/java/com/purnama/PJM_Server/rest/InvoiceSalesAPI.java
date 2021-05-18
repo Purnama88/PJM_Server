@@ -5,7 +5,7 @@
  */
 package com.purnama.PJM_Server.rest;
 
-import com.purnama.PJM_Server.model.pagination.InvoiceSalesPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.model.transactional.InvoiceSales;
 import com.purnama.PJM_Server.service.InvoiceSalesService;
 import lombok.RequiredArgsConstructor;
@@ -40,9 +40,9 @@ public class InvoiceSalesAPI {
         
         Page<InvoiceSales> ls = invoicesalesService.findByNumberContaining(keyword, page, itemperpage);
 
-        InvoiceSalesPagination invoicesales_pagination = new InvoiceSalesPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<InvoiceSales> invoicesalespagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(invoicesales_pagination);
+        return ResponseEntity.ok(invoicesalespagination);
        
     }
     

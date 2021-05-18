@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Brand;
-import com.purnama.PJM_Server.model.pagination.BrandPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.BrandService;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +45,9 @@ public class BrandAPI {
         
         Page<Brand> ls = brandService.findByNameContaining(keyword, page, itemperpage);
         
-        BrandPagination brand_pagination = new BrandPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Brand> brandpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(brand_pagination);
+        return ResponseEntity.ok(brandpagination);
     }
     
     @GetMapping(value="", 

@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.User;
-import com.purnama.PJM_Server.model.pagination.UserPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.UserService;
 import com.purnama.PJM_Server.util.GlobalFunctions;
 import java.time.LocalDateTime;
@@ -46,9 +46,9 @@ public class UserAPI {
         
         Page<User> ls = userService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
-        UserPagination user_pagination = new UserPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<User> userpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(user_pagination);
+        return ResponseEntity.ok(userpagination);
     }
     
     @GetMapping(value = "/{id}",

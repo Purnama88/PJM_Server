@@ -7,7 +7,7 @@ package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Menu;
 import com.purnama.PJM_Server.model.nontransactional.Numbering;
-import com.purnama.PJM_Server.model.pagination.NumberingPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.MenuService;
 import com.purnama.PJM_Server.service.NumberingService;
 import java.time.LocalDateTime;
@@ -49,7 +49,7 @@ public class NumberingAPI {
         
         Page<Numbering> ls = numberingService.findByNamePrefixMenuWithPredicate(keyword, menuid, page, itemperpage);
 
-        NumberingPagination numberingpagination = new NumberingPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Numbering> numberingpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
         return ResponseEntity.ok(numberingpagination);
     }

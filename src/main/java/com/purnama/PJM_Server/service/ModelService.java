@@ -46,6 +46,10 @@ public class ModelService {
         return modelRepository.findByNameContaining(name, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "name")));
     }
     
+    public List<Model> findByNameContaining(String name){
+        return modelRepository.findByNameContaining(name, Sort.by(Sort.Direction.ASC, "name"));
+    }
+    
     public Optional<Model> findByName(String code){
         return modelRepository.findByName(code);
     }

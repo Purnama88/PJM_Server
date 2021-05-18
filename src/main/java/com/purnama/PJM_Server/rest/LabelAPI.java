@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Label;
-import com.purnama.PJM_Server.model.pagination.LabelPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.LabelService;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -57,9 +57,9 @@ public class LabelAPI {
         
         Page<Label> ls = labelService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
-        LabelPagination label_pagination = new LabelPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Label> labelpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(label_pagination);
+        return ResponseEntity.ok(labelpagination);
     }
     
     @GetMapping(value = "/{id}", 

@@ -5,9 +5,9 @@
  */
 package com.purnama.PJM_Server.rest;
 
-import com.purnama.PJM_Server.model.nontransactional.Menu;
 import com.purnama.PJM_Server.model.pagination.Pagination;
-import com.purnama.PJM_Server.service.MenuService;
+import com.purnama.PJM_Server.model.transactional.Expenses;
+import com.purnama.PJM_Server.service.ExpensesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -25,38 +25,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/menus")
-public class MenuAPI {
+@RequestMapping("/api/v1/expenses")
+public class ExpensesAPI {
     
-    private final MenuService menuService;
-    
-    @GetMapping(value="", params = {"status"})
-    public ResponseEntity getMenuList(@RequestParam(value="status") boolean status){
-        if(status){
-            return ResponseEntity.ok(menuService.findByStatusTrue());
-        }
-        else{
-            return ResponseEntity.ok(menuService.findByStatusFalse());
-        }
-    }
+    private final ExpensesService expensesService;
     
     @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"itemperpage", "page", "keyword"})
-    public ResponseEntity<?> getMenuList(
+    public ResponseEntity<?> getExpensesList(
             @RequestParam(value="itemperpage") int itemperpage,
             @RequestParam(value="page") int page,
             @RequestParam(value="keyword") String keyword) {
         
-        Page<Menu> ls = menuService.findByNameContaining(keyword, page, itemperpage);
-        
-        Pagination<Menu> menupagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
-        
-        return ResponseEntity.ok(menupagination);
+        Page<Expenses> ls = expensesService.findByNumberContaining(keyword, page, itemperpage);
+
+        Pagination<Expenses> expensespagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
+
+        return ResponseEntity.ok(expensespagination);
+       
     }
     
-    @GetMapping(value = "/{id}",
+    @GetMapping(value = "/{id}", 
             headers = "Accept=application/json")
-    public ResponseEntity<?> getMenu(@PathVariable("id") int id) {
-        return ResponseEntity.ok(menuService.findById(id));
+    public ResponseEntity<?> getExpenses(@PathVariable("id") int id) {
+        return ResponseEntity.ok(expensesService.findById(id));
     }
 }

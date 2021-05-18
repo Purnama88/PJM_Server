@@ -7,7 +7,7 @@ package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.User;
 import com.purnama.PJM_Server.model.nontransactional.Warehouse;
-import com.purnama.PJM_Server.model.pagination.DeliveryDraftPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.model.transactional.draft.DeliveryDraft;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.DeliveryDraftService;
@@ -50,9 +50,9 @@ public class DeliveryDraftAPI {
         
         Page<DeliveryDraft> ls = deliverydraftService.findByDraftidContaining(keyword, page, itemperpage);
 
-        DeliveryDraftPagination deliverydraft_pagination = new DeliveryDraftPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<DeliveryDraft> deliverydraftpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(deliverydraft_pagination);
+        return ResponseEntity.ok(deliverydraftpagination);
        
     }
     

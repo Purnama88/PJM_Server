@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Partner;
-import com.purnama.PJM_Server.model.pagination.PartnerPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.PartnerService;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,7 +39,7 @@ public class PartnerAPI {
     
     @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"keyword"})
-    public ResponseEntity<?> getItemList(
+    public ResponseEntity<?> getPartnerList(
             @RequestParam(value="keyword") String keyword) {
         
         List<Partner> ls = partnerService.findByCodeContainingOrNameContaining(keyword, keyword);
@@ -56,9 +56,9 @@ public class PartnerAPI {
         
         Page<Partner> ls = partnerService.findByCodeContainingOrNameContainingOrContactnameContaining(keyword, keyword, keyword, page, itemperpage);
         
-        PartnerPagination partner_pagination = new PartnerPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Partner> partnerpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(partner_pagination);
+        return ResponseEntity.ok(partnerpagination);
     }
     
     @GetMapping(value="",

@@ -5,7 +5,7 @@
  */
 package com.purnama.PJM_Server.repository;
 
-import com.purnama.PJM_Server.model.transactional.Delivery;
+import com.purnama.PJM_Server.model.transactional.Expenses;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +15,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * @author p_cor
  */
-public interface DeliveryRepository extends JpaRepository<Delivery, Integer>, PagingAndSortingRepository<Delivery, Integer>  {
-    Page<Delivery> findByNumberContaining(String number, Pageable pageable);
+public interface ExpensesRepository extends JpaRepository<Expenses, Integer>, PagingAndSortingRepository<Expenses, Integer>  {
+    Page<Expenses> findByNumberContaining(String number, Pageable pageable);
 }

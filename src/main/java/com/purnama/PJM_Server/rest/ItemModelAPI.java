@@ -8,10 +8,15 @@ package com.purnama.PJM_Server.rest;
 import com.purnama.PJM_Server.model.combine.ItemModel;
 import com.purnama.PJM_Server.service.ItemModelService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,5 +52,33 @@ public class ItemModelAPI {
         List<ItemModel> ls = itemmodelService.findByModel(modelid);
         
         return ResponseEntity.ok(ls);
+    }
+    
+    @PostMapping(value = "",
+            headers = "Accept=application/json")
+    public ResponseEntity<?> saveItemModel(HttpServletRequest httpRequest,
+            @RequestBody ItemModel itemmodel){
+        
+        try{
+            itemmodelService.save(itemmodel);
+
+            return ResponseEntity.ok(itemmodel);
+        }
+        catch(DataIntegrityViolationException e){
+            return ResponseEntity.badRequest().body("Model already exist in item");
+        }
+        catch(Exception e){
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+    
+    @DeleteMapping(value = "",
+            headers = "Accept=application/json", params = {"id"})
+    public ResponseEntity<?> deleteItemModel(
+            @RequestParam(value="id") int id){
+        
+        itemmodelService.deleteById(id);
+        
+        return ResponseEntity.ok("");
     }
 }

@@ -7,7 +7,7 @@ package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Brand;
 import com.purnama.PJM_Server.model.nontransactional.Model;
-import com.purnama.PJM_Server.model.pagination.ModelPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.BrandService;
 import com.purnama.PJM_Server.service.ModelService;
 import java.time.LocalDateTime;
@@ -65,6 +65,16 @@ public class ModelAPI {
     }
     
     @GetMapping(value = "", 
+            headers = "Accept=application/json", params = {"keyword"})
+    public ResponseEntity<?> getModelList(
+            @RequestParam(value="keyword") String keyword) {
+        
+        List<Model> ls = modelService.findByNameContaining(keyword);
+        
+        return ResponseEntity.ok(ls);
+    }
+    
+    @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"itemperpage", "page", "keyword"})
     public ResponseEntity<?> getModelList(
             @RequestParam(value="itemperpage") int itemperpage,
@@ -73,9 +83,9 @@ public class ModelAPI {
         
         Page<Model> ls = modelService.findByNameContaining(keyword, page, itemperpage);
         
-        ModelPagination model_pagination = new ModelPagination(ls.getTotalPages(), ls.getContent());
-        
-        return ResponseEntity.ok(model_pagination);
+        Pagination<Model> modelpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
+       
+        return ResponseEntity.ok(modelpagination);
     }
     
     @GetMapping(value = "/{id}", 

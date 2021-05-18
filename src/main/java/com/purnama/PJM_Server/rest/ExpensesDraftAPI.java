@@ -8,7 +8,7 @@ package com.purnama.PJM_Server.rest;
 import com.purnama.PJM_Server.model.nontransactional.Currency;
 import com.purnama.PJM_Server.model.nontransactional.User;
 import com.purnama.PJM_Server.model.nontransactional.Warehouse;
-import com.purnama.PJM_Server.model.pagination.ExpensesDraftPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.model.transactional.draft.ExpensesDraft;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
@@ -54,9 +54,9 @@ public class ExpensesDraftAPI {
         
         Page<ExpensesDraft> ls = expensesdraftService.findByDraftidContaining(keyword, page, itemperpage);
 
-        ExpensesDraftPagination expensesdraft_pagination = new ExpensesDraftPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<ExpensesDraft> expensesdraftpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(expensesdraft_pagination);
+        return ResponseEntity.ok(expensesdraftpagination);
        
     }
     

@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Item;
-import com.purnama.PJM_Server.model.pagination.ItemPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.ItemService;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -57,9 +57,9 @@ public class ItemAPI {
         
         Page<Item> ls = itemService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
-        ItemPagination item_pagination = new ItemPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Item> itempagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(item_pagination);
+        return ResponseEntity.ok(itempagination);
     }
     
     @GetMapping(value = "/{id}",

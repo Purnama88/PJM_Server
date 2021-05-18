@@ -23,6 +23,8 @@ public interface ModelRepository extends JpaRepository<Model, Integer>, PagingAn
     
     Page<Model> findByNameContaining(String name, Pageable pageable);
     
+    List<Model> findByNameContaining(String name, Sort sort);
+    
     Optional<Model> findByName(String Name);
     
     List<Model> findByStatusTrue(Sort sort);

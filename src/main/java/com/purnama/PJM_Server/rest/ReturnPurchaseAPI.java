@@ -5,7 +5,7 @@
  */
 package com.purnama.PJM_Server.rest;
 
-import com.purnama.PJM_Server.model.pagination.ReturnPurchasePagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.model.transactional.ReturnPurchase;
 import com.purnama.PJM_Server.service.ReturnPurchaseService;
 import lombok.RequiredArgsConstructor;
@@ -39,9 +39,9 @@ public class ReturnPurchaseAPI {
         
         Page<ReturnPurchase> ls = returnpurchaseService.findByNumberContaining(keyword, page, itemperpage);
 
-        ReturnPurchasePagination returnpurchase_pagination = new ReturnPurchasePagination(ls.getTotalPages(), ls.getContent());
+        Pagination<ReturnPurchase> returnpurchasepagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(returnpurchase_pagination);
+        return ResponseEntity.ok(returnpurchasepagination);
        
     }
     

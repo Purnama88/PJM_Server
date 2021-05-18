@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.PartnerGroup;
-import com.purnama.PJM_Server.model.pagination.PartnerGroupPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.PartnerGroupService;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +45,9 @@ public class PartnerGroupAPI {
         
         Page<PartnerGroup> ls = partnergroupService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
-        PartnerGroupPagination partnergroup_pagination = new PartnerGroupPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<PartnerGroup> partnergrouppagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(partnergroup_pagination);
+        return ResponseEntity.ok(partnergrouppagination);
     }
     
     @GetMapping(value="",

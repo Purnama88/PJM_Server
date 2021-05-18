@@ -8,6 +8,7 @@ package com.purnama.PJM_Server.model.transactional;
 import com.purnama.PJM_Server.model.InternalInvoice;
 import com.purnama.PJM_Server.model.nontransactional.Currency;
 import com.purnama.PJM_Server.model.nontransactional.Partner;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -24,6 +25,9 @@ import org.hibernate.annotations.Formula;
 @Data
 @Table(name="expenses")
 public class Expenses extends InternalInvoice{
+    
+    @Column(name="duedate")
+    protected LocalDateTime duedate;
     
     @ManyToOne
     @JoinColumn(name = "currencyid")

@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Warehouse;
-import com.purnama.PJM_Server.model.pagination.WarehousePagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.WarehouseService;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
@@ -46,9 +46,9 @@ public class WarehouseAPI {
         
         Page<Warehouse> ls = warehouseService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
-        WarehousePagination warehouse_pagination = new WarehousePagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Warehouse> warehousepagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(warehouse_pagination);
+        return ResponseEntity.ok(warehousepagination);
     }
     
     @GetMapping(value="",

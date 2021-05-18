@@ -9,7 +9,7 @@ import com.purnama.PJM_Server.model.nontransactional.Currency;
 import com.purnama.PJM_Server.model.nontransactional.User;
 import com.purnama.PJM_Server.model.nontransactional.Warehouse;
 import com.purnama.PJM_Server.model.transactional.draft.InvoicePurchaseDraft;
-import com.purnama.PJM_Server.model.pagination.InvoicePurchaseDraftPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
 import com.purnama.PJM_Server.service.InvoicePurchaseDraftService;
@@ -56,9 +56,9 @@ public class InvoicePurchaseDraftAPI {
         
         Page<InvoicePurchaseDraft> ls = invoicepurchasedraftService.findByDraftidContaining(keyword, page, itemperpage);
 
-        InvoicePurchaseDraftPagination invoicepurchasedraft_pagination = new InvoicePurchaseDraftPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<InvoicePurchaseDraft> invoicepurchasedraftpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(invoicepurchasedraft_pagination);
+        return ResponseEntity.ok(invoicepurchasedraftpagination);
        
     }
     

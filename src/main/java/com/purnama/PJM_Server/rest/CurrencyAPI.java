@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Currency;
-import com.purnama.PJM_Server.model.pagination.CurrencyPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.CurrencyService;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -46,9 +46,9 @@ public class CurrencyAPI {
         
         Page<Currency> ls = currencyService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
-        CurrencyPagination currency_pagination = new CurrencyPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Currency> currencypagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(currency_pagination);
+        return ResponseEntity.ok(currencypagination);
     }
     
     @GetMapping(value="",

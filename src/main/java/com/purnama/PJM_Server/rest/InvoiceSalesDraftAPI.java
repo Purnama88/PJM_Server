@@ -9,7 +9,7 @@ import com.purnama.PJM_Server.model.nontransactional.Currency;
 import com.purnama.PJM_Server.model.nontransactional.User;
 import com.purnama.PJM_Server.model.nontransactional.Warehouse;
 import com.purnama.PJM_Server.model.transactional.draft.InvoiceSalesDraft;
-import com.purnama.PJM_Server.model.pagination.InvoiceSalesDraftPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
 import com.purnama.PJM_Server.service.InvoiceSalesDraftService;
@@ -46,7 +46,6 @@ public class InvoiceSalesDraftAPI {
     
     private final CurrencyService currencyService;
     
-    
     @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"itemperpage", "page", "keyword"})
     public ResponseEntity<?> getInvoiceSalesDraftList(
@@ -56,9 +55,9 @@ public class InvoiceSalesDraftAPI {
         
         Page<InvoiceSalesDraft> ls = invoicesalesdraftService.findByDraftidContaining(keyword, page, itemperpage);
 
-        InvoiceSalesDraftPagination invoicesalesdraft_pagination = new InvoiceSalesDraftPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<InvoiceSalesDraft> invoicesalesdraftpagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
 
-        return ResponseEntity.ok(invoicesalesdraft_pagination);
+        return ResponseEntity.ok(invoicesalesdraftpagination);
        
     }
     

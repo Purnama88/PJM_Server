@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.ItemGroup;
-import com.purnama.PJM_Server.model.pagination.ItemGroupPagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.ItemGroupService;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +45,9 @@ public class ItemGroupAPI {
         
         Page<ItemGroup> ls = itemgroupService.findByCodeContainingOrNameContaining(keyword, keyword, page, itemperpage);
         
-        ItemGroupPagination itemgroup_pagination = new ItemGroupPagination(ls.getTotalPages(), ls.getContent());
+        Pagination<ItemGroup> itemgrouppagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(itemgroup_pagination);
+        return ResponseEntity.ok(itemgrouppagination);
     }
     
     @GetMapping(value="",

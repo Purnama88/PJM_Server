@@ -6,7 +6,7 @@
 package com.purnama.PJM_Server.rest;
 
 import com.purnama.PJM_Server.model.nontransactional.Role;
-import com.purnama.PJM_Server.model.pagination.RolePagination;
+import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.RoleService;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
@@ -56,9 +56,9 @@ public class RoleAPI {
         
         Page<Role> ls = roleService.findByNameContaining(keyword, page, itemperpage);
         
-        RolePagination role_pagination = new RolePagination(ls.getTotalPages(), ls.getContent());
+        Pagination<Role> rolepagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
-        return ResponseEntity.ok(role_pagination);
+        return ResponseEntity.ok(rolepagination);
     }
     
     @GetMapping(value = "/{id}",

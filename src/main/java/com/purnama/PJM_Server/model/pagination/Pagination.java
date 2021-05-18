@@ -5,13 +5,21 @@
  */
 package com.purnama.PJM_Server.model.pagination;
 
+import java.util.List;
 import lombok.Data;
 
 /**
  *
  * @author p_cor
+ * @param <V>
  */
 @Data
-public class Pagination {
-    protected int totalpages;
+public class Pagination<V> {
+    private int totalpages;
+    private List<V> list;
+    
+    public Pagination(int totalpages, List<V> list){
+        this.list = list;
+        this.totalpages = totalpages;
+    }
 }
