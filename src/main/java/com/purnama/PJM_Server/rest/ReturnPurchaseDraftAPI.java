@@ -12,6 +12,7 @@ import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.model.transactional.draft.ReturnPurchaseDraft;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
+import com.purnama.PJM_Server.service.ItemReturnPurchaseDraftService;
 import com.purnama.PJM_Server.service.ReturnPurchaseDraftService;
 import com.purnama.PJM_Server.util.IdGenerator;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,8 +46,9 @@ public class ReturnPurchaseDraftAPI {
     
     private final ReturnPurchaseDraftService returnpurchasedraftService;
     
-    private final CurrencyService currencyService;
+    private final ItemReturnPurchaseDraftService itemreturnpurchasedraftService;
     
+    private final CurrencyService currencyService;
     
     @GetMapping(value = "", 
             headers = "Accept=application/json", params = {"itemperpage", "page", "keyword"})
@@ -116,5 +119,17 @@ public class ReturnPurchaseDraftAPI {
         catch(Exception e){
             return ResponseEntity.badRequest().body(e);
         }
+    }
+    
+    @DeleteMapping(value = "/{id}", 
+            headers = "Accept=application/json")
+    public ResponseEntity<?> deleteReturnPurchaseDraft(@PathVariable("id") int id){
+        ReturnPurchaseDraft returnpurchasedraft = returnpurchasedraftService.findById(id).get();
+        
+        itemreturnpurchasedraftService.deleteByReturnpurchasedraft(returnpurchasedraft);
+        
+        returnpurchasedraftService.deleteById(returnpurchasedraft.getId());
+        
+        return ResponseEntity.ok("");
     }
 }

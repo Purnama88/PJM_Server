@@ -36,9 +36,9 @@ public class ItemDeliveryDraftAPI {
     private final DeliveryDraftService deliverydraftService;
     
     @GetMapping(value = "",
-            headers = "Accept=application/json", params = {"deliveryid"})
+            headers = "Accept=application/json", params = {"deliverydraftid"})
     public ResponseEntity<?> getItemDeliveryDraftList(
-            @RequestParam(value="deliveryid") int deliveryid) {
+            @RequestParam(value="deliverydraftid") int deliveryid) {
         
         DeliveryDraft deliverydraft = deliverydraftService.findById(deliveryid).get();
         
@@ -52,9 +52,7 @@ public class ItemDeliveryDraftAPI {
     public ResponseEntity<?> saveItemDeliveryDraftList(
             @RequestBody List<ItemDeliveryDraft> itemdeliverydraftlist) {
         
-        for(ItemDeliveryDraft itemdeliverydraft : itemdeliverydraftlist){
-            itemdeliverydraftService.save(itemdeliverydraft);
-        }
+        itemdeliverydraftService.saveAll(itemdeliverydraftlist);
         
         return ResponseEntity.ok(itemdeliverydraftlist);
     }

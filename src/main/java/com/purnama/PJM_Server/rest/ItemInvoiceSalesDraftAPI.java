@@ -52,9 +52,7 @@ public class ItemInvoiceSalesDraftAPI {
     public ResponseEntity<?> saveItemInvoiceSalesDraftList(
             @RequestBody List<ItemInvoiceSalesDraft> iteminvoicesalesdraftlist) {
         
-        for(ItemInvoiceSalesDraft iteminvoicesalesdraft : iteminvoicesalesdraftlist){
-            iteminvoicesalesdraftService.save(iteminvoicesalesdraft);
-        }
+        iteminvoicesalesdraftService.saveAll(iteminvoicesalesdraftlist);
         
         return ResponseEntity.ok(iteminvoicesalesdraftlist);
     }

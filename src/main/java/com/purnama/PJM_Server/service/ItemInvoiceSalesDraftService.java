@@ -10,6 +10,7 @@ import com.purnama.PJM_Server.model.transactional.draft.ItemInvoiceSalesDraft;
 import com.purnama.PJM_Server.repository.ItemInvoiceSalesDraftRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
  * @author p_cor
  */
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ItemInvoiceSalesDraftService {
     private final ItemInvoiceSalesDraftRepository iteminvoicesalesdraftRepository;
@@ -31,8 +33,12 @@ public class ItemInvoiceSalesDraftService {
         return iteminvoicesalesdraftRepository.findById(id);
     }
     
-    public ItemInvoiceSalesDraft save(ItemInvoiceSalesDraft brand){
-        return iteminvoicesalesdraftRepository.save(brand);
+    public ItemInvoiceSalesDraft save(ItemInvoiceSalesDraft iteminvoicesalesdraft){
+        return iteminvoicesalesdraftRepository.save(iteminvoicesalesdraft);
+    }
+    
+    public List<ItemInvoiceSalesDraft> saveAll(List<ItemInvoiceSalesDraft> iteminvoicesalesdrafts){
+        return iteminvoicesalesdraftRepository.saveAll(iteminvoicesalesdrafts);
     }
     
     public void deleteById(Integer id){
@@ -41,5 +47,9 @@ public class ItemInvoiceSalesDraftService {
     
     public List<ItemInvoiceSalesDraft> findByInvoicesalesdraft(InvoiceSalesDraft invoicesalesdraft){
         return iteminvoicesalesdraftRepository.findByInvoicesalesdraft(invoicesalesdraft, Sort.by(Sort.Direction.ASC, "id"));
+    }
+    
+    public Long deleteByInvoicesalesdraft(InvoiceSalesDraft invoicesalesdraft){
+        return iteminvoicesalesdraftRepository.deleteByInvoicesalesdraft(invoicesalesdraft);
     }
 }

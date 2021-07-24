@@ -13,6 +13,7 @@ import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
 import com.purnama.PJM_Server.service.InvoiceSalesDraftService;
+import com.purnama.PJM_Server.service.ItemInvoiceSalesDraftService;
 import com.purnama.PJM_Server.util.IdGenerator;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class InvoiceSalesDraftAPI {
     
     private final InvoiceSalesDraftService invoicesalesdraftService;
+    private final ItemInvoiceSalesDraftService iteminvoicesalesdraftService;
     
     private final CurrencyService currencyService;
     
@@ -115,5 +118,17 @@ public class InvoiceSalesDraftAPI {
         catch(Exception e){
             return ResponseEntity.badRequest().body(e);
         }
+    }
+    
+    @DeleteMapping(value = "/{id}", 
+            headers = "Accept=application/json")
+    public ResponseEntity<?> deleteInvoiceSalesDraft(@PathVariable("id") int id){
+        InvoiceSalesDraft invoicesalesdraft = invoicesalesdraftService.findById(id).get();
+        
+        iteminvoicesalesdraftService.deleteByInvoicesalesdraft(invoicesalesdraft);
+        
+        invoicesalesdraftService.deleteById(invoicesalesdraft.getId());
+        
+        return ResponseEntity.ok("");
     }
 }

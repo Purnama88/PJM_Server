@@ -20,4 +20,6 @@ public interface ItemInvoicePurchaseDraftRepository extends JpaRepository<ItemIn
     
     List<ItemInvoicePurchaseDraft> findByInvoicepurchasedraft(InvoicePurchaseDraft invoicepurchasedraft, Sort sort);
     
+    Long deleteByInvoicepurchasedraft(InvoicePurchaseDraft invoicepurchasedraft);
+    
 }

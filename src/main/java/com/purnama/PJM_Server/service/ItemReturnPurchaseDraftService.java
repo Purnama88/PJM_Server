@@ -10,6 +10,7 @@ import com.purnama.PJM_Server.model.transactional.draft.ItemReturnPurchaseDraft;
 import com.purnama.PJM_Server.repository.ItemReturnPurchaseDraftRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
  * @author p_cor
  */
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ItemReturnPurchaseDraftService {
     private final ItemReturnPurchaseDraftRepository itemreturnpurchasedraftRepository;
@@ -31,8 +33,12 @@ public class ItemReturnPurchaseDraftService {
         return itemreturnpurchasedraftRepository.findById(id);
     }
     
-    public ItemReturnPurchaseDraft save(ItemReturnPurchaseDraft brand){
-        return itemreturnpurchasedraftRepository.save(brand);
+    public ItemReturnPurchaseDraft save(ItemReturnPurchaseDraft itemreturnpurchasedraft){
+        return itemreturnpurchasedraftRepository.save(itemreturnpurchasedraft);
+    }
+    
+    public List<ItemReturnPurchaseDraft> saveAll(List<ItemReturnPurchaseDraft> itemreturnpurchasedrafts){
+        return itemreturnpurchasedraftRepository.saveAll(itemreturnpurchasedrafts);
     }
     
     public void deleteById(Integer id){
@@ -41,5 +47,9 @@ public class ItemReturnPurchaseDraftService {
     
     public List<ItemReturnPurchaseDraft> findByReturnpurchasedraft(ReturnPurchaseDraft returnpurchasedraft){
         return itemreturnpurchasedraftRepository.findByReturnpurchasedraft(returnpurchasedraft, Sort.by(Sort.Direction.ASC, "id"));
+    }
+    
+    public Long deleteByReturnpurchasedraft(ReturnPurchaseDraft returnpurchasedraft){
+        return itemreturnpurchasedraftRepository.deleteByReturnpurchasedraft(returnpurchasedraft);
     }
 }

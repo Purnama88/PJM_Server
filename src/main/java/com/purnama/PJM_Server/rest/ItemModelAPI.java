@@ -74,8 +74,7 @@ public class ItemModelAPI {
     
     @DeleteMapping(value = "",
             headers = "Accept=application/json", params = {"id"})
-    public ResponseEntity<?> deleteItemModel(
-            @RequestParam(value="id") int id){
+    public ResponseEntity<?> deleteItemModel(@RequestParam(value="id") int id){
         
         itemmodelService.deleteById(id);
         

@@ -12,6 +12,7 @@ import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.model.transactional.draft.ReturnSalesDraft;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
+import com.purnama.PJM_Server.service.ItemReturnSalesDraftService;
 import com.purnama.PJM_Server.service.ReturnSalesDraftService;
 import com.purnama.PJM_Server.util.IdGenerator;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +45,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReturnSalesDraftAPI {
     
     private final ReturnSalesDraftService returnsalesdraftService;
+    
+    private final ItemReturnSalesDraftService itemreturnsalesdraftService;
     
     private final CurrencyService currencyService;
     
@@ -116,5 +120,17 @@ public class ReturnSalesDraftAPI {
         catch(Exception e){
             return ResponseEntity.badRequest().body(e);
         }
+    }
+    
+    @DeleteMapping(value = "/{id}", 
+            headers = "Accept=application/json")
+    public ResponseEntity<?> deleteReturnSalesDraft(@PathVariable("id") int id){
+        ReturnSalesDraft returnsalesdraft = returnsalesdraftService.findById(id).get();
+        
+        itemreturnsalesdraftService.deleteByReturnsalesdraft(returnsalesdraft);
+        
+        returnsalesdraftService.deleteById(returnsalesdraft.getId());
+        
+        return ResponseEntity.ok("");
     }
 }

@@ -22,7 +22,7 @@ import lombok.Data;
  */
 @Data
 @MappedSuperclass
-public class ExternalItemInvoiceDraft implements Serializable{
+public class ExternalItemInvoice implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
@@ -31,9 +31,6 @@ public class ExternalItemInvoiceDraft implements Serializable{
     @ManyToOne
     @JoinColumn(name="itemid")
     protected Item item;
-    
-//    @Column(name="code", columnDefinition="varchar(25)")
-//    protected String code;
     
     @Column(name="description", columnDefinition="varchar(150)")
     protected String description;
@@ -50,4 +47,3 @@ public class ExternalItemInvoiceDraft implements Serializable{
     @Column(name="box", columnDefinition="varchar(25)")
     protected String box;
 }
-

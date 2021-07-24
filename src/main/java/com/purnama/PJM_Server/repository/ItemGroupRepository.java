@@ -22,6 +22,8 @@ public interface ItemGroupRepository extends JpaRepository<ItemGroup, Integer>, 
     
     Page<ItemGroup> findByCodeContainingOrNameContaining(String code, String name, Pageable pageable);
     
+    List<ItemGroup> findByCodeContainingOrNameContaining(String code, String name, Sort sort);
+    
     List<ItemGroup> findByStatusTrue(Sort sort);
     
     List<ItemGroup> findByStatusFalse(Sort sort);

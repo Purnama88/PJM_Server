@@ -20,4 +20,5 @@ public interface ItemInvoiceSalesDraftRepository extends JpaRepository<ItemInvoi
     
     List<ItemInvoiceSalesDraft> findByInvoicesalesdraft(InvoiceSalesDraft invoicesalesdraft, Sort sort);
     
+    Long deleteByInvoicesalesdraft(InvoiceSalesDraft invoicesalesdraft);
 }

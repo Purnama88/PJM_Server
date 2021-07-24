@@ -10,6 +10,7 @@ import com.purnama.PJM_Server.model.transactional.draft.ItemExpensesDraft;
 import com.purnama.PJM_Server.repository.ItemExpensesDraftRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
  * @author p_cor
  */
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ItemExpensesDraftService {
     private final ItemExpensesDraftRepository itemexpensesdraftRepository;
@@ -31,8 +33,12 @@ public class ItemExpensesDraftService {
         return itemexpensesdraftRepository.findById(id);
     }
     
-    public ItemExpensesDraft save(ItemExpensesDraft brand){
-        return itemexpensesdraftRepository.save(brand);
+    public ItemExpensesDraft save(ItemExpensesDraft itemexpensesdraft){
+        return itemexpensesdraftRepository.save(itemexpensesdraft);
+    }
+    
+    public List<ItemExpensesDraft> saveAll(List<ItemExpensesDraft> itemexpensesdrafts){
+        return itemexpensesdraftRepository.saveAll(itemexpensesdrafts);
     }
     
     public void deleteById(Integer id){
@@ -41,5 +47,9 @@ public class ItemExpensesDraftService {
     
     public List<ItemExpensesDraft> findByExpensesdraft(ExpensesDraft expensesdraft){
         return itemexpensesdraftRepository.findByExpensesdraft(expensesdraft, Sort.by(Sort.Direction.ASC, "id"));
+    }
+    
+    public Long deleteByExpensesdraft(ExpensesDraft expensesdraft){
+        return itemexpensesdraftRepository.deleteByExpensesdraft(expensesdraft);
     }
 }

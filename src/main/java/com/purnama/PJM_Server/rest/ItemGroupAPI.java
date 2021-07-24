@@ -9,6 +9,7 @@ import com.purnama.PJM_Server.model.nontransactional.ItemGroup;
 import com.purnama.PJM_Server.model.pagination.Pagination;
 import com.purnama.PJM_Server.service.ItemGroupService;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,6 +49,16 @@ public class ItemGroupAPI {
         Pagination<ItemGroup> itemgrouppagination = new Pagination<>(ls.getTotalPages(), ls.getContent());
         
         return ResponseEntity.ok(itemgrouppagination);
+    }
+    
+    @GetMapping(value = "", 
+            headers = "Accept=application/json", params = {"keyword"})
+    public ResponseEntity<?> getItemGroupList(
+            @RequestParam(value="keyword") String keyword) {
+        
+        List<ItemGroup> ls = itemgroupService.findByCodeContainingOrNameContaining(keyword, keyword);
+        
+        return ResponseEntity.ok(ls);
     }
     
     @GetMapping(value="",

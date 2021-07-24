@@ -20,4 +20,5 @@ public interface ItemExpensesDraftRepository extends JpaRepository<ItemExpensesD
     
     List<ItemExpensesDraft> findByExpensesdraft(ExpensesDraft expensesdraft, Sort sort);
     
+    Long deleteByExpensesdraft(ExpensesDraft expensesdraft);
 }

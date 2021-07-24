@@ -52,9 +52,7 @@ public class ItemReturnSalesDraftAPI {
     public ResponseEntity<?> saveItemReturnSalesDraftList(
             @RequestBody List<ItemReturnSalesDraft> itemreturnsalesdraftlist) {
         
-        for(ItemReturnSalesDraft itemreturnsalesdraft : itemreturnsalesdraftlist){
-            itemreturnsalesdraftService.save(itemreturnsalesdraft);
-        }
+        itemreturnsalesdraftService.saveAll(itemreturnsalesdraftlist);
         
         return ResponseEntity.ok(itemreturnsalesdraftlist);
     }

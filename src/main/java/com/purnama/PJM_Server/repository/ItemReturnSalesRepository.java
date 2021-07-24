@@ -5,8 +5,8 @@
  */
 package com.purnama.PJM_Server.repository;
 
-import com.purnama.PJM_Server.model.transactional.draft.DeliveryDraft;
-import com.purnama.PJM_Server.model.transactional.draft.ItemDeliveryDraft;
+import com.purnama.PJM_Server.model.transactional.ReturnSales;
+import com.purnama.PJM_Server.model.transactional.ItemReturnSales;
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,9 +16,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * @author p_cor
  */
-public interface ItemDeliveryDraftRepository extends JpaRepository<ItemDeliveryDraft, Integer>, PagingAndSortingRepository<ItemDeliveryDraft, Integer> { 
-    
-    List<ItemDeliveryDraft> findByDeliverydraft(DeliveryDraft deliverydraft, Sort sort);
-    
-    Long deleteByDeliverydraft(DeliveryDraft deliverydraft);
+public interface ItemReturnSalesRepository extends JpaRepository<ItemReturnSales, Integer>, PagingAndSortingRepository<ItemReturnSales, Integer> { 
+    List<ItemReturnSales> findByReturnsales(ReturnSales returnsales, Sort sort);
 }

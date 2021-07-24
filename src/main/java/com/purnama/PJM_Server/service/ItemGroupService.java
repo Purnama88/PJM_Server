@@ -44,6 +44,10 @@ public class ItemGroupService {
         return itemgroupRepository.findByCodeContainingOrNameContaining(code, name, PageRequest.of(page-1, size, Sort.by(Sort.Direction.ASC, "name")));
     }
     
+    public List<ItemGroup> findByCodeContainingOrNameContaining(String code, String name){
+        return itemgroupRepository.findByCodeContainingOrNameContaining(code, name, Sort.by(Sort.Direction.ASC, "name"));
+    }
+    
     public Optional<ItemGroup> findByCode(String code){
         return itemgroupRepository.findByCode(code);
     }

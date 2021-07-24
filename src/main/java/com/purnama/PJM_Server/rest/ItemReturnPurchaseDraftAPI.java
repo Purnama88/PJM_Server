@@ -52,9 +52,7 @@ public class ItemReturnPurchaseDraftAPI {
     public ResponseEntity<?> saveItemReturnPurchaseDraftList(
             @RequestBody List<ItemReturnPurchaseDraft> itemreturnpurchasedraftlist) {
         
-        for(ItemReturnPurchaseDraft itemreturnpurchasedraft : itemreturnpurchasedraftlist){
-            itemreturnpurchasedraftService.save(itemreturnpurchasedraft);
-        }
+        itemreturnpurchasedraftService.saveAll(itemreturnpurchasedraftlist);
         
         return ResponseEntity.ok(itemreturnpurchasedraftlist);
     }

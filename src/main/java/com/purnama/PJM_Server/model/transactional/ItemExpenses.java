@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.purnama.PJM_Server.model.transactional.draft;
+package com.purnama.PJM_Server.model.transactional;
 
-import com.purnama.PJM_Server.model.InternalItemInvoiceDraft;
+import com.purnama.PJM_Server.model.InternalItemInvoice;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -19,9 +19,8 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name="itemexpensesdraft")
-public class ItemExpensesDraft extends InternalItemInvoiceDraft{
-    
+@Table(name="itemexpenses")
+public class ItemExpenses extends InternalItemInvoice{
     @Column(name="quantity", columnDefinition="Decimal(16, 4)")
     private double quantity;
     
@@ -35,6 +34,6 @@ public class ItemExpensesDraft extends InternalItemInvoiceDraft{
     protected String box;
     
     @ManyToOne
-    @JoinColumn(name = "expensesdraftid")
-    private ExpensesDraft expensesdraft;    
+    @JoinColumn(name = "expensesid")
+    private Expenses expenses;    
 }

@@ -52,10 +52,8 @@ public class ItemExpensesDraftAPI {
     public ResponseEntity<?> saveItemExpensesDraftList(
             @RequestBody List<ItemExpensesDraft> itemexpensesdraftlist) {
         
-        for(ItemExpensesDraft itemexpensesdraft : itemexpensesdraftlist){
-            itemexpensesdraftService.save(itemexpensesdraft);
-        }
-        
+        itemexpensesdraftService.saveAll(itemexpensesdraftlist);
+
         return ResponseEntity.ok(itemexpensesdraftlist);
     }
     

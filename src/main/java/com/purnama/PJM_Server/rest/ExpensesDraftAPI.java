@@ -13,6 +13,7 @@ import com.purnama.PJM_Server.model.transactional.draft.ExpensesDraft;
 import com.purnama.PJM_Server.security.JwtUtil;
 import com.purnama.PJM_Server.service.CurrencyService;
 import com.purnama.PJM_Server.service.ExpensesDraftService;
+import com.purnama.PJM_Server.service.ItemExpensesDraftService;
 import com.purnama.PJM_Server.util.IdGenerator;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +44,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExpensesDraftAPI {
     
     private final ExpensesDraftService expensesdraftService;
+    
+    private final ItemExpensesDraftService itemexpensesdraftService;
     
     private final CurrencyService currencyService;
     
@@ -114,5 +118,17 @@ public class ExpensesDraftAPI {
         catch(Exception e){
             return ResponseEntity.badRequest().body(e);
         }
+    }
+    
+    @DeleteMapping(value = "/{id}", 
+            headers = "Accept=application/json")
+    public ResponseEntity<?> deleteExpensesDraft(@PathVariable("id") int id){
+        ExpensesDraft expensesdraft = expensesdraftService.findById(id).get();
+        
+        itemexpensesdraftService.deleteByExpensesdraft(expensesdraft);
+        
+        expensesdraftService.deleteById(expensesdraft.getId());
+        
+        return ResponseEntity.ok("");
     }
 }

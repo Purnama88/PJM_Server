@@ -20,4 +20,5 @@ public interface ItemReturnPurchaseDraftRepository extends JpaRepository<ItemRet
     
     List<ItemReturnPurchaseDraft> findByReturnpurchasedraft(ReturnPurchaseDraft returnpurchasedraft, Sort sort);
     
+    Long deleteByReturnpurchasedraft(ReturnPurchaseDraft returnpurchasedraft);
 }

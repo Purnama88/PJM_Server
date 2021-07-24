@@ -45,4 +45,21 @@ public class Numbering extends Nontransactional{
     @JoinColumn(name = "menuid")
     private Menu menu;
     
+    public int getLength(){
+        try{
+            return String.valueOf(getEnd()).length();
+        }
+        catch(Exception e){
+            return 1;
+        }
+    }
+    
+    public String getFormat(){
+        return "%0" + getLength() + "d";
+    }
+    
+    @Override
+    public String toString(){
+        return getPrefix() + String.format(getFormat(), getCurrent());
+    }
 }
