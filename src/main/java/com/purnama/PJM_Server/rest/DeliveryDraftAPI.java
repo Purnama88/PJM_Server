@@ -98,6 +98,7 @@ public class DeliveryDraftAPI {
             @RequestBody DeliveryDraft deliverydraft){
         
         try{
+            deliverydraft.setLastmodified(LocalDateTime.now());
             deliverydraftService.save(deliverydraft);
 
             return ResponseEntity.ok(deliverydraft);

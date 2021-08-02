@@ -36,11 +36,11 @@ public class ItemReturnPurchaseDraftAPI {
     private final ReturnPurchaseDraftService returnpurchasedraftService;
     
     @GetMapping(value = "",
-            headers = "Accept=application/json", params = {"returnid"})
+            headers = "Accept=application/json", params = {"returndraftid"})
     public ResponseEntity<?> getItemReturnPurchaseDraftList(
-            @RequestParam(value="returnid") int returnid) {
+            @RequestParam(value="returndraftid") int returndraftid) {
         
-        ReturnPurchaseDraft returnpurchasedraft = returnpurchasedraftService.findById(returnid).get();
+        ReturnPurchaseDraft returnpurchasedraft = returnpurchasedraftService.findById(returndraftid).get();
         
         List<ItemReturnPurchaseDraft> ls = itemreturnpurchasedraftService.findByReturnpurchasedraft(returnpurchasedraft);
         

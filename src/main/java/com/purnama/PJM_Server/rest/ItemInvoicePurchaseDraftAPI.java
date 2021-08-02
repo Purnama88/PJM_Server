@@ -36,11 +36,11 @@ public class ItemInvoicePurchaseDraftAPI {
     private final InvoicePurchaseDraftService invoicepurchasedraftService;
     
     @GetMapping(value = "",
-            headers = "Accept=application/json", params = {"invoiceid"})
+            headers = "Accept=application/json", params = {"invoicedraftid"})
     public ResponseEntity<?> getItemInvoicePurchaseDraftList(
-            @RequestParam(value="invoiceid") int invoiceid) {
+            @RequestParam(value="invoicedraftid") int invoicedraftid) {
         
-        InvoicePurchaseDraft invoicepurchasedraft = invoicepurchasedraftService.findById(invoiceid).get();
+        InvoicePurchaseDraft invoicepurchasedraft = invoicepurchasedraftService.findById(invoicedraftid).get();
         
         List<ItemInvoicePurchaseDraft> ls = iteminvoicepurchasedraftService.findByInvoicepurchasedraft(invoicepurchasedraft);
         

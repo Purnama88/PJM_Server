@@ -37,6 +37,10 @@ public class ItemReturnPurchaseService {
         return itemreturnpurchaseRepository.save(itemreturnpurchase);
     }
     
+    public List<ItemReturnPurchase> saveAll(List<ItemReturnPurchase> itemreturnpurchaselist){
+        return itemreturnpurchaseRepository.saveAll(itemreturnpurchaselist);
+    }
+    
     public void deleteById(Integer id){
         itemreturnpurchaseRepository.deleteById(id);
     }

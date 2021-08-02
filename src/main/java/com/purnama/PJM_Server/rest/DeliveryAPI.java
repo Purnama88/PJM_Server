@@ -69,7 +69,7 @@ public class DeliveryAPI {
     
     @PostMapping(value = "/{id}", 
             headers = "Accept=application/json")
-    public ResponseEntity<?> postDelivery(@PathVariable("id") int id) {
+    public ResponseEntity<?> addDelivery(@PathVariable("id") int id) {
         DeliveryDraft deliverydraft = deliverydraftService.findById(id).get();
         
         List<ItemDeliveryDraft> itemdeliverydrafts = itemdeliverydraftService.findByDeliverydraft(deliverydraft);

@@ -38,9 +38,9 @@ public class ItemDeliveryDraftAPI {
     @GetMapping(value = "",
             headers = "Accept=application/json", params = {"deliverydraftid"})
     public ResponseEntity<?> getItemDeliveryDraftList(
-            @RequestParam(value="deliverydraftid") int deliveryid) {
+            @RequestParam(value="deliverydraftid") int deliverydraftid) {
         
-        DeliveryDraft deliverydraft = deliverydraftService.findById(deliveryid).get();
+        DeliveryDraft deliverydraft = deliverydraftService.findById(deliverydraftid).get();
         
         List<ItemDeliveryDraft> ls = itemdeliverydraftService.findByDeliverydraft(deliverydraft);
         

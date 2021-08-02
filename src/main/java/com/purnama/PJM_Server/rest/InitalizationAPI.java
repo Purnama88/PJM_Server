@@ -93,16 +93,16 @@ public class InitalizationAPI {
         user.setWarehouses(warehouses);
         
         userService.save(user);
-//        
-//        Currency currency = new Currency();
-//        currency.setCode("IDR");
-//        currency.setDefault_currency(true);
-//        currency.setDescription("Indonesian Rupiah");
-//        currency.setLastmodified(LocalDateTime.now());
-//        currency.setName("Rupiah");
-//        currency.setNote("");
-//        
-//        currencyService.save(currency);
+        
+        Currency currency = new Currency();
+        currency.setCode("IDR");
+        currency.setDefaultcurrency(true);
+        currency.setDescription("Indonesian Rupiah");
+        currency.setLastmodified(LocalDateTime.now());
+        currency.setName("Rupiah");
+        currency.setNote("");
+        
+        currencyService.save(currency);
         
         return ResponseEntity.ok("OK");
     }

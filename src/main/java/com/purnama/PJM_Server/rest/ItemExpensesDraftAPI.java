@@ -36,11 +36,11 @@ public class ItemExpensesDraftAPI {
     private final ExpensesDraftService expensesdraftService;
     
     @GetMapping(value = "",
-            headers = "Accept=application/json", params = {"expensesid"})
+            headers = "Accept=application/json", params = {"expensesdraftid"})
     public ResponseEntity<?> getItemExpensesDraftList(
-            @RequestParam(value="expensesid") int expensesid) {
+            @RequestParam(value="expensesdraftid") int expensesdraftid) {
         
-        ExpensesDraft expensesdraft = expensesdraftService.findById(expensesid).get();
+        ExpensesDraft expensesdraft = expensesdraftService.findById(expensesdraftid).get();
         
         List<ItemExpensesDraft> ls = itemexpensesdraftService.findByExpensesdraft(expensesdraft);
         

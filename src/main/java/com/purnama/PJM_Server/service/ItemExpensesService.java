@@ -37,6 +37,10 @@ public class ItemExpensesService {
         return itemexpensesRepository.save(itemexpenses);
     }
     
+    public List<ItemExpenses> saveAll(List<ItemExpenses> itemexpenses){
+        return itemexpensesRepository.saveAll(itemexpenses);
+    }
+    
     public void deleteById(Integer id){
         itemexpensesRepository.deleteById(id);
     }

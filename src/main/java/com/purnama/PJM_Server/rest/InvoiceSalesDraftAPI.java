@@ -86,6 +86,7 @@ public class InvoiceSalesDraftAPI {
         invoicesalesdraft.setDraftid(IdGenerator.generateId());
         invoicesalesdraft.setCreateddate(LocalDateTime.now());
         invoicesalesdraft.setInvoicedate(LocalDateTime.now());
+        invoicesalesdraft.setDuedate(LocalDateTime.now());
         invoicesalesdraft.setWarehouse(warehouse);
         invoicesalesdraft.setNote("");
         invoicesalesdraft.setSubtotal(0);
@@ -96,6 +97,7 @@ public class InvoiceSalesDraftAPI {
         invoicesalesdraft.setUser(user);
         invoicesalesdraft.setLastmodified(LocalDateTime.now());
         invoicesalesdraft.setCurrency(currency);
+        invoicesalesdraft.setRate(1);
         
         invoicesalesdraftService.save(invoicesalesdraft);
         
@@ -108,6 +110,7 @@ public class InvoiceSalesDraftAPI {
             @RequestBody InvoiceSalesDraft invoicesalesdraft){
         
         try{
+            invoicesalesdraft.setLastmodified(LocalDateTime.now());
             invoicesalesdraftService.save(invoicesalesdraft);
 
             return ResponseEntity.ok(invoicesalesdraft);

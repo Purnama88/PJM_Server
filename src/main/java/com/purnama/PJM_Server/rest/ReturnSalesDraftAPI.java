@@ -88,6 +88,7 @@ public class ReturnSalesDraftAPI {
         returnsalesdraft.setDraftid(IdGenerator.generateId());
         returnsalesdraft.setCreateddate(LocalDateTime.now());
         returnsalesdraft.setInvoicedate(LocalDateTime.now());
+        returnsalesdraft.setDuedate(LocalDateTime.now());
         returnsalesdraft.setWarehouse(warehouse);
         returnsalesdraft.setNote("");
         returnsalesdraft.setSubtotal(0);
@@ -98,6 +99,7 @@ public class ReturnSalesDraftAPI {
         returnsalesdraft.setUser(user);
         returnsalesdraft.setLastmodified(LocalDateTime.now());
         returnsalesdraft.setCurrency(currency);
+        returnsalesdraft.setRate(1);
         
         returnsalesdraftService.save(returnsalesdraft);
         
@@ -110,6 +112,7 @@ public class ReturnSalesDraftAPI {
             @RequestBody ReturnSalesDraft returnsalesdraft){
         
         try{
+            returnsalesdraft.setLastmodified(LocalDateTime.now());
             returnsalesdraftService.save(returnsalesdraft);
 
             return ResponseEntity.ok(returnsalesdraft);

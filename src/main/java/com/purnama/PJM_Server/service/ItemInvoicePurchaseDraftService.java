@@ -45,6 +45,10 @@ public class ItemInvoicePurchaseDraftService {
         iteminvoicepurchasedraftRepository.deleteById(id);
     }
     
+    public void deleteAll(List<ItemInvoicePurchaseDraft> iteminvoicepurchasedrafts){
+        iteminvoicepurchasedraftRepository.deleteAll(iteminvoicepurchasedrafts);
+    }
+    
     public List<ItemInvoicePurchaseDraft> findByInvoicepurchasedraft(InvoicePurchaseDraft invoicepurchasedraft){
         return iteminvoicepurchasedraftRepository.findByInvoicepurchasedraft(invoicepurchasedraft, Sort.by(Sort.Direction.ASC, "id"));
     }

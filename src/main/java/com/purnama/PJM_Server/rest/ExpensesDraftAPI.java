@@ -85,6 +85,7 @@ public class ExpensesDraftAPI {
         ExpensesDraft expensesdraft = new ExpensesDraft();
         expensesdraft.setDraftid(IdGenerator.generateId());
         expensesdraft.setInvoicedate(LocalDateTime.now());
+        expensesdraft.setDuedate(LocalDateTime.now());
         expensesdraft.setWarehouse(warehouse);
         expensesdraft.setNote("");
         expensesdraft.setSubtotal(0);
@@ -96,6 +97,7 @@ public class ExpensesDraftAPI {
         expensesdraft.setLastmodified(LocalDateTime.now());
         expensesdraft.setCreateddate(LocalDateTime.now());
         expensesdraft.setCurrency(currency);
+        expensesdraft.setRate(1);
         
         expensesdraftService.save(expensesdraft);
         
@@ -108,6 +110,7 @@ public class ExpensesDraftAPI {
             @RequestBody ExpensesDraft expensesdraft){
         
         try{
+            expensesdraft.setLastmodified(LocalDateTime.now());
             expensesdraftService.save(expensesdraft);
 
             return ResponseEntity.ok(expensesdraft);

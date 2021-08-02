@@ -41,6 +41,10 @@ public class ItemReturnPurchaseDraftService {
         return itemreturnpurchasedraftRepository.saveAll(itemreturnpurchasedrafts);
     }
     
+    public void deleteAll(List<ItemReturnPurchaseDraft> itemreturnpurchasedrafts){
+        itemreturnpurchasedraftRepository.deleteAll(itemreturnpurchasedrafts);
+    }
+    
     public void deleteById(Integer id){
         itemreturnpurchasedraftRepository.deleteById(id);
     }

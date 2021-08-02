@@ -37,6 +37,10 @@ public class ItemReturnSalesService {
         return itemreturnsalesRepository.save(itemreturnsales);
     }
     
+    public List<ItemReturnSales> saveAll(List<ItemReturnSales> itemreturnsales){
+        return itemreturnsalesRepository.saveAll(itemreturnsales);
+    }
+    
     public void deleteById(Integer id){
         itemreturnsalesRepository.deleteById(id);
     }

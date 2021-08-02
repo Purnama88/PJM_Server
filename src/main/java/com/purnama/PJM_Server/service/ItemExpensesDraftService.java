@@ -45,6 +45,10 @@ public class ItemExpensesDraftService {
         itemexpensesdraftRepository.deleteById(id);
     }
     
+    public void deleteAll(List<ItemExpensesDraft> itemexpensesdrafts){
+        itemexpensesdraftRepository.deleteAll(itemexpensesdrafts);
+    }
+    
     public List<ItemExpensesDraft> findByExpensesdraft(ExpensesDraft expensesdraft){
         return itemexpensesdraftRepository.findByExpensesdraft(expensesdraft, Sort.by(Sort.Direction.ASC, "id"));
     }

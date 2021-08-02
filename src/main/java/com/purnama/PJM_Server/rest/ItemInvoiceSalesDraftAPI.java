@@ -36,11 +36,11 @@ public class ItemInvoiceSalesDraftAPI {
     private final InvoiceSalesDraftService invoicesalesdraftService;
     
     @GetMapping(value = "",
-            headers = "Accept=application/json", params = {"invoiceid"})
+            headers = "Accept=application/json", params = {"invoicedraftid"})
     public ResponseEntity<?> getItemInvoiceSalesDraftList(
-            @RequestParam(value="invoiceid") int invoiceid) {
+            @RequestParam(value="invoicedraftid") int invoicedraftid) {
         
-        InvoiceSalesDraft invoicesalesdraft = invoicesalesdraftService.findById(invoiceid).get();
+        InvoiceSalesDraft invoicesalesdraft = invoicesalesdraftService.findById(invoicedraftid).get();
         
         List<ItemInvoiceSalesDraft> ls = iteminvoicesalesdraftService.findByInvoicesalesdraft(invoicesalesdraft);
         

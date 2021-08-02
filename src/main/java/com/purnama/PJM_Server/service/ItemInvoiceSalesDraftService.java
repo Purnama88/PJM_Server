@@ -41,6 +41,10 @@ public class ItemInvoiceSalesDraftService {
         return iteminvoicesalesdraftRepository.saveAll(iteminvoicesalesdrafts);
     }
     
+    public void deleteAll(List<ItemInvoiceSalesDraft> iteminvoicesalesdrafts){
+        iteminvoicesalesdraftRepository.deleteAll(iteminvoicesalesdrafts);
+    }
+    
     public void deleteById(Integer id){
         iteminvoicesalesdraftRepository.deleteById(id);
     }

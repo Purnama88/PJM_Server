@@ -37,6 +37,10 @@ public class ItemInvoiceSalesService {
         return iteminvoicesalesRepository.save(iteminvoicesales);
     }
     
+    public List<ItemInvoiceSales> saveAll(List<ItemInvoiceSales> iteminvoicesaleslist){
+        return iteminvoicesalesRepository.saveAll(iteminvoicesaleslist);
+    }
+    
     public void deleteById(Integer id){
         iteminvoicesalesRepository.deleteById(id);
     }
